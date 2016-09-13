@@ -40,13 +40,10 @@
                 <db.promotion.username>root</db.promotion.username>
                 <db.promotion.password>123456</db.promotion.password>
                 <decision.check_open_account_url>https://192.168.150.234/jmeapi/promotion/customer/queryCustomerByNumberNos</decision.check_open_account_url>
-                <!-- <img.url>http://image.app.jme.com/hq/puerinvite</img.url>-->
-                 <!--<img.url>http://192.168.30.114:8080</img.url>-->
-
-                <!--<img.url>http://weipan2.jsdttec.com/</img.url>-->
-                <img.url>http://192.168.11.11:8080</img.url>
+                <!--<img.url>http://image.app.jme.com/hq/puerinvite</img.url>-->
+                <img.url>http://192.168.11.11:8080/</img.url>
                <!-- <img.url>http://image.app.jme.com/hq/puerinvite</img.url>-->
-                <img.version>44f3332</img.version>
+                <img.version>88dfb08</img.version>
             </properties>
         </profile>
         <profile>
@@ -59,7 +56,7 @@
                 <db.promotion.password>dyyt@123</db.promotion.password>
                 <decision.check_open_account_url>https://114.55.158.117:13033/jmeapi/promotion/customer/queryCustomerByNumberNos</decision.check_open_account_url>
                 <img.url>http://image.app.jme.com/hq/puerinvite</img.url>
-                <img.version>44f3332</img.version>
+                <img.version>88dfb08</img.version>
             </properties>
         </profile>
     </profiles>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration>
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="[%d{yyyyMMdd HH:mm:ss,SSS\} %-5p] [%t] %x [%c:%L] - %m%n" />
+        </layout>
+
+        <!--限制输出级别-->
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMax" value="ERROR"/>
+            <param name="LevelMin" value="TRACE"/>
+        </filter>
+    </appender>
+
+    <appender name="ErrorFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Threshold" value="ERROR" />
+        <param name="File" value="${catalina.base}/logs/PuerPromotionWebError.log" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyyMMdd HH:mm:ss,SSS\} %-5p] [%t] %x [%c:%L] - %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="${catalina.base}/logs/PuerPromotionWeb.log"/>
+        <param name="DatePattern " value="'.'yyyy-MM-dd-HH"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="[%d{yyyyMMdd HH:mm:ss,SSS\} %-5p] [%t] %x [%c:%L] - %m%n" />
+        </layout>
+    </appender>
+
+    <!--通过<logger></logger>的定义可以将各个包中的类日志输出到不同的日志文件中-->
+    <logger name="org.springframework" additivity="false">
+        <level value="debug" />
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+        <appender-ref ref="ErrorFileAppender" />
+    </logger>
+
+    <logger name="org.apache" additivity="false">
+        <level value="debug" />
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+        <appender-ref ref="ErrorFileAppender" />
+    </logger>
+
+
+    <logger name="druid.sql" additivity="false">
+        <level value="debug" />
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+        <appender-ref ref="ErrorFileAppender" />
+    </logger>
+
+    <logger name="org.mybatis" additivity="false">
+        <level value="debug" />
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+        <appender-ref ref="ErrorFileAppender" />
+    </logger>
+
+    <logger name="cn.datai" additivity="false">
+        <level value="DEBUG" />
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+        <appender-ref ref="ErrorFileAppender" />
+    </logger>
+
+
+    <root>
+        <priority value="debug" />
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+        <appender-ref ref="ErrorFileAppender" />
+    </root>
+
+
+</log4j:configuration>

@@ -1,0 +1,45 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:list id="propertiesLocations">
+        <value>classpath:/database.properties</value>
+        <value>classpath:/external-system.properties</value>
+        <value>classpath:/process.properties</value>
+        <value>classpath:/weixin.properties</value>
+        <value>classpath:/member-decision.properties</value>
+    </util:list>
+
+    <bean id="initProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="fileEncoding" value="UTF-8"/>
+        <property name="locations" ref="propertiesLocations"></property>
+    </bean>
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="fileEncoding" value="UTF-8"/>
+        <property name="locations" ref="propertiesLocations"></property>
+    </bean>
+
+
+    <context:component-scan base-package="cn.datai.puer.promotion">
+        <context:exclude-filter expression="org.springframework.stereotype.Repository" type="annotation"/>
+    </context:component-scan>
+
+    <context:annotation-config/>
+
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+    <import resource="applicationContext-mvc.xml"/>
+    <import resource="applicationContext-datasource.xml"/>
+    <import resource="applicationContext-transaction.xml"/>
+    <import resource="applicationContext-restClient.xml"/>
+    <import resource="applicationContext-task.xml"/>
+
+</beans>

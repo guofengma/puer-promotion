@@ -1,0 +1,19 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/task
+		http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+
+    <task:annotation-driven/>
+
+    <task:scheduler id="systemScheduler" pool-size="3" />
+
+    <task:scheduled-tasks scheduler="systemScheduler">
+        <!--每90分钟去腾讯服务器更新token-->
+        <task:scheduled ref="weixinTokenTask" method="refreshToken" fixed-delay="5400000" initial-delay="1000"/>
+    </task:scheduled-tasks>
+
+    <bean id="weixinTokenTask" class="cn.datai.puer.promotion.website.framework.system.WeixinTask"/>
+</beans>
